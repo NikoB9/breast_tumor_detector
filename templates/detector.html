@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'what'%}">
+  	<img src="{% static "img/logo.png" %}" width="90" height="50" class="d-inline-block align-top" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'what'%}">Breast cancer </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'us'%}">About us </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'detector'%}">Detector <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style type="text/css">
+  th{
+    text-align: center;
+  }
+  .valid{
+    border: 4px solid green;
+  }
+  .invalid{
+    border: 4px solid red;
+  }
+</style>
+
+<div class="card" style="margin: 20px">
+  <div class="card-header">
+    <b>Tumor data to be detected</b>
+  </div>
+  <div class="card-body">
+  	
+    <div class="table-responsive">
+      <table class="table"><form id="datadetect">
+        {% csrf_token %}
+        <thead>
+          <tr>
+            <th colspan="10">mean</th>
+          </tr>
+          <tr>
+            <th scope="col">radius</th>
+            <th scope="col">texture</th>
+            <th scope="col">perimeter</th>
+            <th scope="col">area</th>
+            <th scope="col">smoothness</th>
+            <th scope="col">compactness</th>
+            <th scope="col">concavity</th>
+            <th scope="col">concave points</th>
+            <th scope="col">symmetry</th>
+            <th scope="col">fractal dimension</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input type="text" id="m-radius" class="form-control numfield"></th>
+            <td><input type="text" id="m-texture" class="form-control numfield"></td>
+            <td><input type="text" id="m-perimeter" class="form-control numfield"></td>
+            <td><input type="text" id="m-area" class="form-control numfield"></td>
+            <td><input type="text" id="m-smoothness" class="form-control numfield"></td>
+            <td><input type="text" id="m-compactness" class="form-control numfield"></td>
+            <td><input type="text" id="m-concavity" class="form-control numfield"></td>
+            <td><input type="text" id="m-concavePtr" class="form-control numfield"></td>
+            <td><input type="text" id="m-symmetry" class="form-control numfield"></td>
+            <td><input type="text" id="m-fractalDimension" class="form-control numfield"></td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th colspan="10">se</th>
+          </tr>
+          <tr>
+            <th scope="col">radius</th>
+            <th scope="col">texture</th>
+            <th scope="col">perimeter</th>
+            <th scope="col">area</th>
+            <th scope="col">smoothness</th>
+            <th scope="col">compactness</th>
+            <th scope="col">concavity</th>
+            <th scope="col">concave points</th>
+            <th scope="col">symmetry</th>
+            <th scope="col">fractal dimension</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input type="text" id="se-radius" class="form-control numfield"></th>
+            <td><input type="text" id="se-texture" class="form-control numfield"></td>
+            <td><input type="text" id="se-perimeter" class="form-control numfield"></td>
+            <td><input type="text" id="se-area" class="form-control numfield"></td>
+            <td><input type="text" id="se-smoothness" class="form-control numfield"></td>
+            <td><input type="text" id="se-compactness" class="form-control numfield"></td>
+            <td><input type="text" id="se-concavity" class="form-control numfield"></td>
+            <td><input type="text" id="se-concavePtr" class="form-control numfield"></td>
+            <td><input type="text" id="se-symmetry" class="form-control numfield"></td>
+            <td><input type="text" id="se-fractalDimension" class="form-control numfield"></td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th colspan="10">worst</th>
+          </tr>
+          <tr>
+            <th scope="col">radius</th>
+            <th scope="col">texture</th>
+            <th scope="col">perimeter</th>
+            <th scope="col">area</th>
+            <th scope="col">smoothness</th>
+            <th scope="col">compactness</th>
+            <th scope="col">concavity</th>
+            <th scope="col">concave points</th>
+            <th scope="col">symmetry</th>
+            <th scope="col">fractal dimension</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input type="text" id="w-radius" class="form-control numfield"></th>
+            <td><input type="text" id="w-texture" class="form-control numfield"></td>
+            <td><input type="text" id="w-perimeter" class="form-control numfield"></td>
+            <td><input type="text" id="w-area" class="form-control numfield"></td>
+            <td><input type="text" id="w-smoothness" class="form-control numfield"></td>
+            <td><input type="text" id="w-compactness" class="form-control numfield"></td>
+            <td><input type="text" id="w-concavity" class="form-control numfield"></td>
+            <td><input type="text" id="w-concavePtr" class="form-control numfield"></td>
+            <td><input type="text" id="w-symmetry" class="form-control numfield"></td>
+            <td><input type="text" id="w-fractalDimension" class="form-control numfield"></td>
+          </tr>
+        </tbody>
+      </form></table>
+    </div>
+
+  </div>
+  <div class="card-header">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="algoch" style="background: transparent;" id="libelSlct"><b>Result by </b></label>
+      </div>
+      <select class="custom-select" id="algoch" onchange="verif_bfr_send_data()">
+        <option selected value="none">Choose...</option>
+        <option value="{% url 'svm' kind=1 %}">SVM 1</option>
+        <option value="{% url 'svm' kind=2 %}">SVM 2</option>
+        <option value="{% url 'svm' kind=3 %}">SVM 3</option>
+        <option value="{% url 'rf' %}">Random Forest</option>
+        <option value="{% url 'knn' %}">KNN</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-body" id="resultdiv">
+    
+  </div>	
+</div>
+
+
+
+{% endblock %}

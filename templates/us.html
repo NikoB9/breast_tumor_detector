@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'what'%}">
+  	<img src="{% static "img/logo.png" %}" width="90" height="50" class="d-inline-block align-top" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'what'%}">Breast cancer </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link active" href="{% url 'us'%}">About us <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'detector'%}">Detector</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style type="text/css">
+  .col{
+    text-align: center;
+  }
+  .profile_img{
+    border-radius: 100px;
+    border: 4px solid white;
+  }
+  p{
+    text-align: justify;
+  }
+</style>
+
+<div class="card" style="margin: 20px">
+  <div class="card-header col">
+    <h3>Who are we and why this web software?</h3>
+  </div>
+  <div class="card-body">
+  	<p>
+     In the last year of engineering school, specializing in the field of computer science, we chose to train our knowledge on an important question in the medical field. 
+    </p>
+    <p>As part of our school curriculum and in our respective companies, we learn every day to diversify our knowledge in this field. This time we are interested in machine learning and in particular supervised classification algorithms.</p>
+    <p>We have chosen a topic which is both important for the medical field as well as interesting for comparing different classification algorithms for a dataset of only a few hundred rows. In this project we hope for three things:</p>
+    <ol>
+      <li>The first was of course to understand how to use classification algorithms, observe their operation and compare them.</li>
+      <li>Then we wanted to give the possibility to the users to also understand the algorithms used. Then they could choose the one that best suits their need in order to research.</li>
+      <li>We have also designed this platform so that the algorithms used can be understood, taken up and used in the context of a daily project. Indeed the code is OpenSource, available on github in a public repo, and we support all those who want to contribute to the improvement of the platform to make it more adapted to reality. If the project interests contributors, we will be proud to have been able to provide a basis for a platform that would save lives after improving algorithms, training and research criteria.</li>
+    </ol>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+        <img src="{% static "img/chloe_xaintray.jfif" %}" width="100" height="100" class="profile_img" alt="">      
+      </div>
+      <div class="col">
+        <img src="{% static "img/nicolas_bourneuf.png" %}" width="90" height="100" class="profile_img" alt="">      
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <span style="min-width: 100px;">Chloé Xaintray</span>
+      </div>
+      <div class="col">
+        <span style="min-width: 100px;">Nicolas Bourneuf</span>
+      </div>
+    </div>
+  	
+  </div>
+</div>
+
+
+
+{% endblock %}
