@@ -5,8 +5,15 @@ from django.http import HttpResponse
 
 from django.template.loader import render_to_string
 
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn import metrics
+
 def svm(request, kind):
 
+    print(kind);
+    
     m_area = request.POST.get('m-area')
     m_compactness = request.POST.get('m-compactness')
     m_concavePtr = request.POST.get('m-concavePtr')
@@ -39,25 +46,42 @@ def svm(request, kind):
     w_smoothness = request.POST.get('w-smoothness')
     w_symmetry = request.POST.get('w-symmetry')
     w_texture = request.POST.get('w-texture')
+        
+    # Load and return the breast cancer wisconsin dataset (classification).
+    cancer = datasets.load_breast_cancer()
+        
+    # Split dataset into training set and test set
+    X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.3,random_state=109) # 70% training and 30% test
+     
+    # Create a svm Classifier
+    if kind == "1":
+        clf = SVC(kernel='linear')
 
-    efficacite = 0
-    taux_fauxPositifs = 0
-    taux_fauxNegatifs = 0
+    elif kind == "2":
+        clf = SVC(kernel='poly', degree=2, gamma='auto')
 
-    if kind == 1:
-        #algo 1
-        #calculs taux
-        0==0
-    elif kind == 2:
-        #algo 2
-        #calculs taux
-        0==0
-    elif kind == 3:
-        #algo 3
-        #calculs taux
-        0==0
+    elif kind == "3":
+        clf = SVC(kernel='poly', degree=2, gamma='scale')
+  
+    # Train the model using the training sets
+    clf.fit(X_train, y_train)
+            
+    # Predict the response for test dataset
+    y_pred = clf.predict(X_test)
 
-    html = render_to_string("algos/svm.html", {'eff':efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
+    efficacite = metrics.accuracy_score(y_test, y_pred)
+    taux_fauxPositifs = 1-metrics.precision_score(y_test, y_pred)
+    taux_fauxNegatifs = 1-metrics.recall_score(y_test, y_pred)  
+    
+    # Predict
+    pred = clf.predict([[m_area, m_compactness, m_concavePtr, m_concavity, m_fractalDimension, m_perimeter, m_radius, m_smoothness, m_symmetry, m_texture, se_area, se_compactness, se_concavePtr, se_concavity, se_fractalDimension, se_perimeter, se_radius, se_smoothness, se_symmetry, se_texture, w_area, w_compactness, w_concavePtr, w_concavity, w_fractalDimension, w_perimeter, w_radius, w_smoothness, w_symmetry, w_texture]])
+    print(pred)
+    if pred[0] == 1:
+        res = "Malignant"
+    else : 
+        res = "Benign"
+    
+    html = render_to_string("algos/svm.html", {'result': res, 'eff': efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
     return HttpResponse(html)
 	
 
