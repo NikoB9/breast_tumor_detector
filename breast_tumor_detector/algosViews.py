@@ -10,6 +10,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn import metrics
 
+import math
+
+
+def truncate(number, digits) -> float:
+    stepper = 10.0 ** digits
+    return math.trunc(stepper * number) / stepper
+
 def svm(request, kind):
 
     print(kind);
@@ -89,7 +96,7 @@ def svm(request, kind):
     else : 
         res = "Malignant"
     
-    html = render_to_string("algos/svm.html", {'result': res, 'eff': efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
+    html = render_to_string("algos/svm.html", {'result': res, 'eff': truncate(efficacite*100,4), 'taux_fp': truncate(taux_fauxPositifs*100,4), 'taux_fn': truncate(taux_fauxNegatifs*100,4)})
     return HttpResponse(html)
 	
 

@@ -39,19 +39,18 @@
 </style>
 
 <div class="card" style="margin: 20px">
-  <div class="card-header">
-    <b>Tumor data to be detected</b>
+  <div class="card-header col">
+    <h3>Tumor data to be detected</h3>
   </div>
   <div class="card-body">
   	
-    <div class="table-responsive">
-      <table class="table"><form id="datadetect">
-        {% csrf_token %}
-        <thead>
+    
+		<table class="table">
+		<form id="datadetect">
+		{% csrf_token %}
+          
           <tr>
-            <th colspan="10">mean</th>
-          </tr>
-          <tr>
+			<td>&nbsp;</td>
             <th scope="col">radius</th>
             <th scope="col">texture</th>
             <th scope="col">perimeter</th>
@@ -63,9 +62,9 @@
             <th scope="col">symmetry</th>
             <th scope="col">fractal dimension</th>
           </tr>
-        </thead>
-        <tbody>
+		  
           <tr>
+		  <th scope="row">Mean</th>
             <th><input type="text" id="m-radius" class="form-control numfield" value="17.99"></th>
             <td><input type="text" id="m-texture" class="form-control numfield" value="10.38"></td>
             <td><input type="text" id="m-perimeter" class="form-control numfield" value="122.8"></td>
@@ -77,26 +76,9 @@
             <td><input type="text" id="m-symmetry" class="form-control numfield" value="0.2419"></td>
             <td><input type="text" id="m-fractalDimension" class="form-control numfield" value="0.07871"></td>
           </tr>
-        </tbody>
-        <thead>
+        
           <tr>
-            <th colspan="10">se</th>
-          </tr>
-          <tr>
-            <th scope="col">radius</th>
-            <th scope="col">texture</th>
-            <th scope="col">perimeter</th>
-            <th scope="col">area</th>
-            <th scope="col">smoothness</th>
-            <th scope="col">compactness</th>
-            <th scope="col">concavity</th>
-            <th scope="col">concave points</th>
-            <th scope="col">symmetry</th>
-            <th scope="col">fractal dimension</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+			<th scope="row">SE</th>
             <th><input type="text" id="se-radius" class="form-control numfield" value="1.095"></th>
             <td><input type="text" id="se-texture" class="form-control numfield" value="0.9053"></td>
             <td><input type="text" id="se-perimeter" class="form-control numfield"value="8.589"></td>
@@ -108,26 +90,9 @@
             <td><input type="text" id="se-symmetry" class="form-control numfield" value="0.03003"></td>
             <td><input type="text" id="se-fractalDimension" class="form-control numfield" value="0.006193"></td>
           </tr>
-        </tbody>
-        <thead>
+      
           <tr>
-            <th colspan="10">worst</th>
-          </tr>
-          <tr>
-            <th scope="col">radius</th>
-            <th scope="col">texture</th>
-            <th scope="col">perimeter</th>
-            <th scope="col">area</th>
-            <th scope="col">smoothness</th>
-            <th scope="col">compactness</th>
-            <th scope="col">concavity</th>
-            <th scope="col">concave points</th>
-            <th scope="col">symmetry</th>
-            <th scope="col">fractal dimension</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+			<th scope="row">Worst</th>
             <th><input type="text" id="w-radius" class="form-control numfield" value="25.38"></th>
             <td><input type="text" id="w-texture" class="form-control numfield" value="17.33"></td>
             <td><input type="text" id="w-perimeter" class="form-control numfield" value="184.6"></td>
@@ -139,22 +104,22 @@
             <td><input type="text" id="w-symmetry" class="form-control numfield" value="0.4601"></td>
             <td><input type="text" id="w-fractalDimension" class="form-control numfield"value="0.1189"></td>
           </tr>
-        </tbody>
-      </form></table>
+	</form>
+    </table>
     </div>
 
-  </div>
   <div class="card-header">
+  <h3> Results </h3>
     <div class="input-group">
       <div class="input-group-prepend">
-        <label class="input-group-text" for="algoch" style="background: transparent;" id="libelSlct"><b>Result by </b></label>
+        <label class="input-group-text" for="algoch" style="background: transparent;" id="libelSlct"><b>with algorithm </b></label>
       </div>
       <select class="custom-select" id="algoch" onchange="verif_bfr_send_data()">
         <option selected value="none">Choose...</option>
-        <option value="{% url 'svm' kind=1 %}">SVM kernel=linear</option>
-        <option value="{% url 'svm' kind=2 %}">SVM kernel=poly degree=2 gamma=auto</option>
-        <option value="{% url 'svm' kind=3 %}">SVM kernel=poly degree=2 gamma=scale</option>
-		<option value="{% url 'svm' kind=4 %}">SVM kernel=rbf gamma=scale</option>
+        <option value="{% url 'svm' kind=1 %}">SVM (kernel=linear)</option>
+        <option value="{% url 'svm' kind=2 %}">SVM (kernel=poly, degree=2, gamma=auto)</option>
+        <option value="{% url 'svm' kind=3 %}">SVM (kernel=poly, degree=2, gamma=scale)</option>
+		<option value="{% url 'svm' kind=4 %}">SVM (kernel=rbf, gamma=scale)</option>
         <option value="{% url 'rf' %}">Random Forest</option>
         <option value="{% url 'knn' %}">KNN</option>
       </select>
@@ -164,7 +129,5 @@
     
   </div>	
 </div>
-
-
 
 {% endblock %}
