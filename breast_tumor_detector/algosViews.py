@@ -77,12 +77,17 @@ def svm(request, kind):
     taux_fauxNegatifs = 1-metrics.recall_score(y_test, y_pred)  
     
     # Predict
-    pred = clf.predict([[m_area, m_compactness, m_concavePtr, m_concavity, m_fractalDimension, m_perimeter, m_radius, m_smoothness, m_symmetry, m_texture, se_area, se_compactness, se_concavePtr, se_concavity, se_fractalDimension, se_perimeter, se_radius, se_smoothness, se_symmetry, se_texture, w_area, w_compactness, w_concavePtr, w_concavity, w_fractalDimension, w_perimeter, w_radius, w_smoothness, w_symmetry, w_texture]])
+    print([m_radius, m_texture, m_perimeter, m_area, m_smoothness, m_compactness, m_concavity, m_concavePtr, m_symmetry, m_fractalDimension,
+           se_radius, se_texture, se_perimeter, se_area, se_smoothness, se_compactness, se_concavity, se_concavePtr, se_symmetry, se_fractalDimension,
+           w_radius, w_texture, w_perimeter, w_area, w_smoothness, w_compactness, w_concavity, w_concavePtr, w_symmetry, w_fractalDimension])
+    pred = clf.predict([[m_radius, m_texture, m_perimeter, m_area, m_smoothness, m_compactness, m_concavity, m_concavePtr, m_symmetry, m_fractalDimension,
+           se_radius, se_texture, se_perimeter, se_area, se_smoothness, se_compactness, se_concavity, se_concavePtr, se_symmetry, se_fractalDimension,
+           w_radius, w_texture, w_perimeter, w_area, w_smoothness, w_compactness, w_concavity, w_concavePtr, w_symmetry, w_fractalDimension]])
     print(pred)
     if pred[0] == 1:
-        res = "Malignant"
-    else : 
         res = "Benign"
+    else : 
+        res = "Malignant"
     
     html = render_to_string("algos/svm.html", {'result': res, 'eff': efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
     return HttpResponse(html)
