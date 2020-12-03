@@ -151,9 +151,10 @@
       </div>
       <select class="custom-select" id="algoch" onchange="verif_bfr_send_data()">
         <option selected value="none">Choose...</option>
-        <option value="{% url 'svm' kind=1 %}">SVM 1</option>
-        <option value="{% url 'svm' kind=2 %}">SVM 2</option>
-        <option value="{% url 'svm' kind=3 %}">SVM 3</option>
+        <option value="{% url 'svm' kind=1 %}">SVM kernel=linear</option>
+        <option value="{% url 'svm' kind=2 %}">SVM kernel=poly degree=2 gamma=auto</option>
+        <option value="{% url 'svm' kind=3 %}">SVM kernel=poly degree=2 gamma=scale</option>
+		<option value="{% url 'svm' kind=4 %}">SVM kernel=rbf gamma=scale</option>
         <option value="{% url 'rf' %}">Random Forest</option>
         <option value="{% url 'knn' %}">KNN</option>
       </select>

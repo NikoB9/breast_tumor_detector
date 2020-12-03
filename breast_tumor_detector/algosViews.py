@@ -62,6 +62,9 @@ def svm(request, kind):
 
     elif kind == "3":
         clf = SVC(kernel='poly', degree=2, gamma='scale')
+        
+    elif kind == "4":
+        clf = SVC(kernel='rbf', gamma='scale')
   
     # Train the model using the training sets
     clf.fit(X_train, y_train)
