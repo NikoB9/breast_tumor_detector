@@ -17,6 +17,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 import matplotlib.pyplot as plt
 
+from sklearn.ensemble import RandomForestClassifier
+
 import math
 
 
@@ -139,11 +141,9 @@ def rf(request):
     cancer = datasets.load_breast_cancer()
     X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.3,random_state=109) # 70% training and 30% test
     
-    clf = DecisionTreeClassifier()
-    t = clf.fit(X_train, y_train)
-    fig, ax = plt.subplots(figsize=(25, 25))
-    tree.plot_tree(t, feature_names=cancer.feature_names, class_names=cancer.target_names, max_depth=6, fontsize=10, filled=True)
-    fig.savefig('static/static_local/result_tree/tree.png')
+    clf = RandomForestClassifier()
+    clf.fit(X_train, y_train)
+    
     y_pred = clf.predict(X_test)
     
     efficacite = metrics.accuracy_score(y_test, y_pred)
