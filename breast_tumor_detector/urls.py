@@ -33,6 +33,7 @@ urlpatterns = [
 
 	re_path(r'svm/(?P<kind>\d{1})$', algosViews.svm, name='svm'),
 	re_path(r'randomForest$', algosViews.rf, name='rf'),
+	re_path(r'decisionTree$', algosViews.dt, name='dt'),
 	re_path(r'knn$', algosViews.knn, name='knn'),
 
 	re_path(r'^static/(?P<path>.*)$', serve,{'document_root':settings.STATIC_ROOT}),
