@@ -19,6 +19,15 @@ def us(request):
 def detector(request):
 	return render(request, "detector.html")
 
+def algoSVM(request):
+	return render(request, "algoSVM.html")
+
+def algoKNN(request):
+	return render(request, "algoKNN.html")
+
+def algoRandomForest(request):
+	return render(request, "algoRandomForest.html")
+
 
 def handler404(request, exception):
 	return render(request, "errors/404.html")

@@ -27,6 +27,9 @@ urlpatterns = [
 	path('what', views.home, name='what'),
 	path('us', views.us, name='us'),
 	path('detector', views.detector, name='detector'),
+   path('algoSVM', views.algoSVM, name='algoSVM'),
+   path('algoKNN', views.algoKNN, name='algoKNN'),
+   path('algoRandomForest', views.algoRandomForest, name='algoRandomForest'),
 
 	re_path(r'svm/(?P<kind>\d{1})$', algosViews.svm, name='svm'),
 	re_path(r'randomForest$', algosViews.rf, name='rf'),
