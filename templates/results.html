@@ -1,9 +1,28 @@
 {% load static %}
 
+<style type="text/css">
+  .card.Malignant{
+    border-color: red !important;
+  }
+  .card-header.col.Malignant{
+	background-color: rgba(255,0,0,0.7) !important;
+	color:white;
+  }
+  
+  .card.Benign{
+    border-color: green !important;
+  }
+  .card-header.col.Benign{
+	background-color: rgba(0,255,0,0.7) !important;
+	color:black;
+  }
+
+</style>
+
 <div class="col d-flex justify-content-center">
-<div class="card" style="margin: 20px" >
- <div class="card-header col">
-<h5 style="color:magenta">{{result}}</h5>
+<div class="card {{result}}" style="margin: 20px" >
+ <div class="card-header col {{result}}"> 
+<h5  style="text-align:center">{{result |upper}}</h5>
 </div>
  <div class="card-body">
 <p>Accuracy = {{eff}} %</p>
