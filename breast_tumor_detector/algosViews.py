@@ -9,6 +9,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn import metrics
+from sklearn import neighbors
 
 import math
 
@@ -19,8 +20,6 @@ def truncate(number, digits) -> float:
 
 def svm(request, kind):
 
-    print(kind);
-    
     m_area = request.POST.get('m-area')
     m_compactness = request.POST.get('m-compactness')
     m_concavePtr = request.POST.get('m-concavePtr')
@@ -84,19 +83,16 @@ def svm(request, kind):
     taux_fauxNegatifs = 1-metrics.recall_score(y_test, y_pred)  
     
     # Predict
-    print([m_radius, m_texture, m_perimeter, m_area, m_smoothness, m_compactness, m_concavity, m_concavePtr, m_symmetry, m_fractalDimension,
-           se_radius, se_texture, se_perimeter, se_area, se_smoothness, se_compactness, se_concavity, se_concavePtr, se_symmetry, se_fractalDimension,
-           w_radius, w_texture, w_perimeter, w_area, w_smoothness, w_compactness, w_concavity, w_concavePtr, w_symmetry, w_fractalDimension])
     pred = clf.predict([[m_radius, m_texture, m_perimeter, m_area, m_smoothness, m_compactness, m_concavity, m_concavePtr, m_symmetry, m_fractalDimension,
            se_radius, se_texture, se_perimeter, se_area, se_smoothness, se_compactness, se_concavity, se_concavePtr, se_symmetry, se_fractalDimension,
            w_radius, w_texture, w_perimeter, w_area, w_smoothness, w_compactness, w_concavity, w_concavePtr, w_symmetry, w_fractalDimension]])
-    print(pred)
+    
     if pred[0] == 1:
         res = "Benign"
     else : 
         res = "Malignant"
     
-    html = render_to_string("algos/svm.html", {'result': res, 'eff': truncate(efficacite*100,4), 'taux_fp': truncate(taux_fauxPositifs*100,4), 'taux_fn': truncate(taux_fauxNegatifs*100,4)})
+    html = render_to_string("results.html", {'result': res, 'eff': truncate(efficacite*100,4), 'taux_fp': truncate(taux_fauxPositifs*100,4), 'taux_fn': truncate(taux_fauxNegatifs*100,4)})
     return HttpResponse(html)
 	
 
@@ -140,7 +136,7 @@ def rf(request):
     taux_fauxPositifs = 0
     taux_fauxNegatifs = 0
 
-    html = render_to_string("algos/random_forest.html", {'eff':efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
+    html = render_to_string("results.html", {'result': 25, 'eff':efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
     return HttpResponse(html)
 
 def knn(request):
@@ -178,10 +174,27 @@ def knn(request):
     w_symmetry = request.POST.get('w-symmetry')
     w_texture = request.POST.get('w-texture')
 
-	#algos + calculs taux
-    efficacite = 0
-    taux_fauxPositifs = 0
-    taux_fauxNegatifs = 0
+    cancer = datasets.load_breast_cancer()
+    X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, test_size=0.3,random_state=109) # 70% training and 30% test
 
-    html = render_to_string("algos/knn.html", {'eff':efficacite, 'taux_fp': taux_fauxPositifs, 'taux_fn': taux_fauxNegatifs})
+    knn = neighbors.KNeighborsClassifier(n_neighbors=15, weights='uniform')
+
+    knn.fit(X_train, y_train)
+
+    y_pred = knn.predict(X_test)
+    
+    efficacite = metrics.accuracy_score(y_test, y_pred)
+    taux_fauxPositifs = 1-metrics.precision_score(y_test, y_pred)
+    taux_fauxNegatifs = 1-metrics.recall_score(y_test, y_pred)
+    
+    pred = knn.predict([[m_radius, m_texture, m_perimeter, m_area, m_smoothness, m_compactness, m_concavity, m_concavePtr, m_symmetry, m_fractalDimension,
+           se_radius, se_texture, se_perimeter, se_area, se_smoothness, se_compactness, se_concavity, se_concavePtr, se_symmetry, se_fractalDimension,
+           w_radius, w_texture, w_perimeter, w_area, w_smoothness, w_compactness, w_concavity, w_concavePtr, w_symmetry, w_fractalDimension]])
+    
+    if pred[0] == 1:
+        res = "Benign"
+    else : 
+        res = "Malignant"
+    
+    html = render_to_string("results.html", {'result': res, 'eff': truncate(efficacite*100,4), 'taux_fp': truncate(taux_fauxPositifs*100,4), 'taux_fn': truncate(taux_fauxNegatifs*100,4)})
     return HttpResponse(html)
