@@ -5,7 +5,7 @@
 {% block content %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'what'%}">
+  <a class="navbar-brand" href="{% url 'detector'%}">
   	<img src="{% static "img/logo.png" %}" width="90" height="50" class="d-inline-block align-top" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,8 +13,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'what'%}">Breast cancer <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'breastCancer'%}">Breast cancer </a>
       </li>
 	  <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,41 +27,117 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'us'%}">About us</a>
+        <a class="nav-link" href="{% url 'us'%}">About us </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'detector'%}">Detector</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'detector'%}">Detector <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
 </nav>
 
 <style type="text/css">
-  .col{
+  th{
     text-align: center;
   }
-  .profile_img{
-    border-radius: 100px;
-    border: 4px solid white;
+  .valid{
+    border: 4px solid green;
   }
-  p{
-    text-align: justify;
+  .invalid{
+    border: 4px solid red;
   }
 </style>
 
 <div class="card" style="margin: 20px">
   <div class="card-header col">
-	<h3>Breast Cancer Information</h3>
-    <a href="https://en.wikipedia.org/wiki/Breast_cancer">Watch directly on wikipedia</a>
+    <h3>Tumor data to be detected</h3>
   </div>
   <div class="card-body">
-  	<iframe src="https://en.wikipedia.org/wiki/Breast_cancer" id="wikiembed" style="width: 100%;height: 65vh; border: none;"></iframe>
+  	
+    
+		<table class="table">
+		<form id="datadetect">
+		{% csrf_token %}
+          
+          <tr>
+			<td>&nbsp;</td>
+            <th scope="col">radius</th>
+            <th scope="col">texture</th>
+            <th scope="col">perimeter</th>
+            <th scope="col">area</th>
+            <th scope="col">smoothness</th>
+            <th scope="col">compactness</th>
+            <th scope="col">concavity</th>
+            <th scope="col">concave points</th>
+            <th scope="col">symmetry</th>
+            <th scope="col">fractal dimension</th>
+          </tr>
+		  
+          <tr>
+		  <th scope="row">Mean</th>
+            <th><input type="text" id="m-radius" class="form-control numfield" value="17.99"></th>
+            <td><input type="text" id="m-texture" class="form-control numfield" value="10.38"></td>
+            <td><input type="text" id="m-perimeter" class="form-control numfield" value="122.8"></td>
+            <td><input type="text" id="m-area" class="form-control numfield" value="1001"></td>
+            <td><input type="text" id="m-smoothness" class="form-control numfield" value="0.1184"></td>
+            <td><input type="text" id="m-compactness" class="form-control numfield" value="0.2776"></td>
+            <td><input type="text" id="m-concavity" class="form-control numfield" value="0.3001"></td>
+            <td><input type="text" id="m-concavePtr" class="form-control numfield" value="0.1471"></td>
+            <td><input type="text" id="m-symmetry" class="form-control numfield" value="0.2419"></td>
+            <td><input type="text" id="m-fractalDimension" class="form-control numfield" value="0.07871"></td>
+          </tr>
+        
+          <tr>
+			<th scope="row">SE</th>
+            <th><input type="text" id="se-radius" class="form-control numfield" value="1.095"></th>
+            <td><input type="text" id="se-texture" class="form-control numfield" value="0.9053"></td>
+            <td><input type="text" id="se-perimeter" class="form-control numfield"value="8.589"></td>
+            <td><input type="text" id="se-area" class="form-control numfield"value="153.4"></td>
+            <td><input type="text" id="se-smoothness" class="form-control numfield" value="0.006399"></td>
+            <td><input type="text" id="se-compactness" class="form-control numfield" value="0.04904"></td>
+            <td><input type="text" id="se-concavity" class="form-control numfield" value="0.05373"></td>
+            <td><input type="text" id="se-concavePtr" class="form-control numfield" value="0.01587"></td>
+            <td><input type="text" id="se-symmetry" class="form-control numfield" value="0.03003"></td>
+            <td><input type="text" id="se-fractalDimension" class="form-control numfield" value="0.006193"></td>
+          </tr>
+      
+          <tr>
+			<th scope="row">Worst</th>
+            <th><input type="text" id="w-radius" class="form-control numfield" value="25.38"></th>
+            <td><input type="text" id="w-texture" class="form-control numfield" value="17.33"></td>
+            <td><input type="text" id="w-perimeter" class="form-control numfield" value="184.6"></td>
+            <td><input type="text" id="w-area" class="form-control numfield" value="2019"></td>
+            <td><input type="text" id="w-smoothness" class="form-control numfield" value="0.1622"></td>
+            <td><input type="text" id="w-compactness" class="form-control numfield" value="0.6656"></td>
+            <td><input type="text" id="w-concavity" class="form-control numfield" value="0.7119"></td>
+            <td><input type="text" id="w-concavePtr" class="form-control numfield" value="0.2654"></td>
+            <td><input type="text" id="w-symmetry" class="form-control numfield" value="0.4601"></td>
+            <td><input type="text" id="w-fractalDimension" class="form-control numfield"value="0.1189"></td>
+          </tr>
+	</form>
+    </table>
+    </div>
+
+  <div class="card-header">
+  <h3> Results </h3>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="algoch" style="background: transparent;" id="libelSlct"><b>with algorithm </b></label>
+      </div>
+      <select class="custom-select" id="algoch" onchange="verif_bfr_send_data()">
+        <option selected value="none">Choose...</option>
+        <option value="{% url 'svm' kind=1 %}">SVM (kernel=linear)</option>
+        <option value="{% url 'svm' kind=2 %}">SVM (kernel=poly, degree=2, gamma=auto)</option>
+        <option value="{% url 'svm' kind=3 %}">SVM (kernel=poly, degree=2, gamma=scale)</option>
+		<option value="{% url 'svm' kind=4 %}">SVM (kernel=rbf, gamma=scale)</option>
+        <option value="{% url 'rf' %}">Random Forest</option>
+        <option value="{% url 'knn' %}">KNN</option>
+      </select>
+    </div>
   </div>
-  <div class="card-footer">
-  	By Wikipedia
-  </div>
+  <div class="card-body" id="resultdiv">
+    
+  </div>	
 </div>
-
-
 
 {% endblock %}

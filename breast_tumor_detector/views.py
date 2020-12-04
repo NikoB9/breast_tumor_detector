@@ -16,9 +16,6 @@ def home(request):
 def us(request):
 	return render(request, "us.html")
 
-def detector(request):
-	return render(request, "detector.html")
-
 def algoSVM(request):
 	return render(request, "algoSVM.html")
 
@@ -27,6 +24,10 @@ def algoKNN(request):
 
 def algoRandomForest(request):
 	return render(request, "algoRandomForest.html")
+
+def breastCancer(request):
+	return render(request, "breastCancer.html")
+
 
 
 def handler404(request, exception):

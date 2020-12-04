@@ -24,12 +24,12 @@ handler500 = "breast_tumor_detector.views.handler500"
 
 urlpatterns = [
 	path('', views.home, name='home'),
-	path('what', views.home, name='what'),
+	path('detector', views.home, name='detector'),
 	path('us', views.us, name='us'),
-	path('detector', views.detector, name='detector'),
-   path('algoSVM', views.algoSVM, name='algoSVM'),
-   path('algoKNN', views.algoKNN, name='algoKNN'),
-   path('algoRandomForest', views.algoRandomForest, name='algoRandomForest'),
+ 	path('algoSVM', views.algoSVM, name='algoSVM'),
+   	path('algoKNN', views.algoKNN, name='algoKNN'),
+   	path('algoRandomForest', views.algoRandomForest, name='algoRandomForest'),
+	path('breastCancer', views.breastCancer, name='breastCancer'),
 
 	re_path(r'svm/(?P<kind>\d{1})$', algosViews.svm, name='svm'),
 	re_path(r'randomForest$', algosViews.rf, name='rf'),
