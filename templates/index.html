@@ -120,6 +120,8 @@
 
   <div class="card-header">
   <h3> Results </h3>
+  <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">Dataset Breast Cancer Wisconsin</a>
+  </br>
     <div class="input-group">
       <div class="input-group-prepend">
         <label class="input-group-text" for="algoch" style="background: transparent;" id="libelSlct"><b>with algorithm </b></label>
@@ -130,9 +132,11 @@
         <option value="{% url 'svm' kind=2 %}">SVM (kernel=poly, degree=2, gamma=auto)</option>
         <option value="{% url 'svm' kind=3 %}">SVM (kernel=poly, degree=2, gamma=scale)</option>
 		 <option value="{% url 'svm' kind=4 %}">SVM (kernel=rbf, gamma=scale)</option>
-		 <option value="{% url 'dt' %}">Decision Tree</option>
-        <option value="{% url 'rf' %}">Random Forest</option>
+		 <option disabled>──────────</option>
 		 <option value="{% url 'knn' %}">KNN (k=15, weights=uniform)</option>
+        <option disabled>──────────</option>
+		 <option value="{% url 'dt' %}">Decision Tree</option>
+        <option value="{% url 'rf' %}">Random Forest (n_estimators=100)</option>
       </select>
     </div>
   </div>
