@@ -18,13 +18,14 @@
       </li>
 	  <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Classification algorithms
+          Algorithms
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'algoSVM'%}">SVM<span class="sr-only">(current)</span></a>
-          <a class="dropdown-item" href="{% url 'algoKNN'%}">KNN</a>
-          <a class="dropdown-item" href="{% url 'algoRandomForest'%}">Random Forest</a>
-          <a class="dropdown-item" href="{% url 'comp'%}">Comparison</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#intro">Introduction</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#svm">SVM</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#knn">KNN</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#rf">Random Forest</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#comp">Comparison</a>
         </div>
       </li>
       <li class="nav-item">

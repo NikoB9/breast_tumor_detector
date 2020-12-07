@@ -18,13 +18,14 @@
       </li>
 	  <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Classification algorithms
+          Algorithms<span class="sr-only">(current)</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'algoSVM'%}">SVM<span class="sr-only">(current)</span></a>
-          <a class="dropdown-item" href="{% url 'algoKNN'%}">KNN</a>
-          <a class="dropdown-item" href="{% url 'algoRandomForest'%}">Random Forest</a>
-          <a class="dropdown-item" href="{% url 'comp'%}">Comparison</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#intro">Introduction</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#svm">SVM</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#knn">KNN</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#rf">Random Forest</a>
+          <a class="dropdown-item" href="{% url 'algos'%}#comp">Comparison</a>
         </div>
       </li>
       <li class="nav-item">
@@ -56,12 +57,110 @@
   }
 </style>
 
+<div class="card" style="margin: 20px" id="intro">
+  <div class="card-header col">
+    <h3>Introduction to Machine Learning</h3>
+  </div>
+  <div class="card-body">
+    <h4>Classic Machine Learning</h4>
+    <p>
+      Machine Learning, dominated by artificial intelligence, is an area that allows predicting
+      results without the code explicitly containing the answer. For the machine to learn by itself it
+      needs two important things:
+      <ol>
+        <li>A data model that will be used as a basis to calculate a result</li>
+        <li>A learning algorithm adapted to the model</li>
+      </ol>
+      The big problem with machine learning is that there is no such thing as a magic algorithm.
+      There are a lot of algorithms, more or less expensive, depending on the data we want to
+      process and the use we want to make of it.
+      The strength of this area and that most of the work is studying the data and understanding
+      how to process it. Subsequently most of the algorithms are already implemented and you just
+      must use them.
+      There are three main types of algorithms for learning the model. The learning is one of the
+      most important part because it allows to bring a better precision of prediction.
+      <ol>
+        <li>Supervised Learning</li>
+        <li>Unsupervised Learning</li>
+        <li>Reinforcement Learning</li>
+      </ol>
+    </p>
+
+    <h4>Supervised Learning</h4>
+    <p>When we talk about supervised learning, we can easily understand that the machine needs
+    help from humans. In this case the Machine must train with data labeled at the input and predefined output data.
+    This kind of learning makes it possible to solve problems of regression (output variable is
+    a continuous value, it can take any value) and of classification (output variable is a discrete
+    value, related to a class, the number of possibility is limited).</p> 
+
+    <h4>Unsupervised Learning</h4>
+    <p>Unlike supervised learning, unsupervised learning gives the machine a lot more flexibility.
+    In fact, the machine receives a non-labeled data set and does not know the output values.
+    Like a human being left in an unknown environment without a guide, he will try to regroup
+    the data, make subsets, to classify a potential future unknown data. To achieve these subsets,
+    we use learning algorithms for clustering (grouping of data according to their similarities) and
+    association (finding relationships according to the attributes of the data).</p>
+
+    <h4>Reinforcement Learning</h4>
+    <p>This kind of method is special, and it is not the most used due to its complexity. The
+    algorithms of this method are based on a system of reward and punishment. Obviously, the
+    aim of the algorithm is to obtain the best reward for a given objective. Most generally, the
+    algorithm creates its own dataset by exploring a specific environment.</p>
+  </div>
+</div>
+
 <div class="card" style="margin: 20px" id="svm">
   <div class="card-header col">
     <h3>Support Vector Machine Algorithm (SVM)</h3>
   </div>
   <div class="card-body">
-    <p>Blabla SVM</p>
+    <p>The SVM algorithm is a machine learning algorithm with supervised learning used
+    to meet classification needs. It belongs to the category of linear classifiers because it uses
+    linear separation of data. It is much more efficient in classification, especially binary
+    classification. The algorithm can also handle regression problems.</p>
+    <p>
+      The goal of an SVM algorithm is to find an optimal boundary by maximizing the distance
+between training points and the boundary thanks to support vectors located on the limit of
+each class. It will be necessary to use a "one-vs-one" or
+"one-vs-all" trick to be able to use the SVM in the multi-class classification.
+    </p>
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/svmBase.png" %}">
+    </div>
+    <p>
+      We can use the "kernel trick" if the data is not separable in a linear way. However, it
+sometimes happens that the data model is not necessarily representable in the form of two
+linearly separable classes. It is a matter of common sense and in this case, it will be necessary
+to choose another type of algorithm such as the decision tree.
+    </p>
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/svmKernelUse.png" %}">
+    </div>
+    <p>With more than two dimensions it is difficult to choose the right kernel. You have to test. Here are the different kernels that we can use:<p>
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/svmKindsKernel.png" %}">
+    </div>
+    <p>
+      You will also see below the mathematical formulas of the kernels, taken from scikit-learn, allowing to understand the hyperparameters with which we can play such as the sigma and the polynomial degree.
+    </p>
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/svmkernelExplain.png" %}">
+    </div>
+    <p>
+      SVM is one of the most powerful linear classification algorithms. Its strong point is
+that it is very efficient with little data and becomes less efficient with too much data. (For once
+I have an advantage over Google). KVM algorithms are known for their solid theoretical
+guarantees, their great flexibility and their ease of use. This algorithm cannot be applied to too
+complex problems and it is better to stay on simple use of binary classification. For example,
+to classify emails as SPAM or NON-SPAM it is effective.
+    </p>
+  </div>
+  <div class="card-footer">
+    References :
+    <ul>
+      <li>https://www.r-bloggers.com</li>
+      <li>https://scikit-learn.org</li>
+    </ul>
   </div>
 </div>
 
@@ -70,7 +169,44 @@
     <h3>K-Nearst Neighbors Algorithm (KNN)</h3>
   </div>
   <div class="card-body">
-    <p>Blabla KNN</p>
+    <p>KNN is also a supervised learning algorithm that can solve both classification and regression problems. It is very easy to implement and study. There are no ambiguous settings or tips. The hyperparameters mainly concern the definition of the weight of the features, the way in which the distance is calculated (Euclidean, manhattan or minkowski) and the algorithm used for the search for neighbors. Here are the steps to follow:
+    </p>
+    <ol>
+      <li>First step, you have to observe the model and define a K according to the noise (not always obvious)</li>
+
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/knnStep1.png" %}">
+    </div>
+
+      <li>Secondly, the algorithm will have to calculate the distances between the data to be classified and the others</li>
+
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/knnStep2.png" %}">
+    </div>
+
+      <li>Then we select the K data closest to the one we want to determine</li>
+
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/knnStep3.png" %}">
+    </div>
+
+      <li>Finally we vote to know the label or the value induced by our data</li>
+
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/knnStep4.png" %}">
+    </div>
+
+    </ol>
+    <p>
+      KNN is a powerful algorithm that is very easy to understand and use. It is much more reliable for classification problems, but it can be used for regression. In our case of tumor detection (benign / malignant classification) it turned out to be very efficient. You still have to be careful with this kind of algorithm because it is quite sensitive to noise. The other useful information is related to K. The lower the K, the more there is a risk of having an overfitting problem (over-trained: the model is trained too narrowly). Conversely, the higher the K the more there is the risk of underfitting (under-trained: the model is treated too broadly).
+    </p>
+  </div>
+  <div class="card-footer">
+    References :
+    <ul>
+      <li>https://www.kdnuggets.com</li>
+      <li>https://scikit-learn.org</li>
+    </ul>
   </div>
 </div>
 
@@ -81,13 +217,20 @@
   <div class="card-body">
     <p>Blabla Decision tree Random Forest</p>
   </div>
+  <div class="card-footer">
+    References :
+    <ul>
+      <li>https://www.edureka.co/</li>
+      <li>https://scikit-learn.org</li>
+    </ul>
+  </div>
 </div>
 
 <div class="card" style="margin: 20px" id="comp">
   <div class="card-header col">
-    <h3>Comparison</h3>
+    <h3>Comparison (for breast tumor detection)</h3>
   </div>
-  <div class="card-body">
+  <div class="card-body table-responsive">
     <table class="table">
     {% csrf_token %}
           
@@ -117,9 +260,9 @@
       <th scope="row">Speed</th>
             <td class="centercol"><i class="fas fa-times"></i></td>
             <td class="centercol"><i class="fas fa-check"></i></td>
-            <td class="centercol"><i class="fas fa-check"></i></td>
-            <td class="centercol"><i class="fas fa-check"></i></td>
-            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
             <td class="centercol"><i class="fas fa-check"></i></td>
             <td class="centercol"><i class="fas fa-check"></i></td>
           </tr>
