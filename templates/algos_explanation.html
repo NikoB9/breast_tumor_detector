@@ -158,8 +158,8 @@ to classify emails as SPAM or NON-SPAM it is effective.
   <div class="card-footer">
     References :
     <ul>
-      <li>https://www.r-bloggers.com</li>
-      <li>https://scikit-learn.org</li>
+      <li><a href="https://www.r-bloggers.com" target="_blank">https://www.r-bloggers.com</a></li>
+      <li><a href="https://scikit-learn.org" target="_blank">https://scikit-learn.org</a></li>
     </ul>
   </div>
 </div>
@@ -204,8 +204,8 @@ to classify emails as SPAM or NON-SPAM it is effective.
   <div class="card-footer">
     References :
     <ul>
-      <li>https://www.kdnuggets.com</li>
-      <li>https://scikit-learn.org</li>
+      <li><a href="https://www.kdnuggets.com" target="_blank">https://www.kdnuggets.com</a></li>
+      <li><a href="https://scikit-learn.org" target="_blank">https://scikit-learn.org</a></li>
     </ul>
   </div>
 </div>
@@ -215,13 +215,59 @@ to classify emails as SPAM or NON-SPAM it is effective.
     <h3>Random Forest Algorithm</h3>
   </div>
   <div class="card-body">
-    <p>Blabla Decision tree Random Forest</p>
+    <p>Before talking about the random forest, we must look at the decision tree of which it is composed.</p>
+    <p>The decision tree uses the same principle as for managerial decision
+trees. Obviously, a manager will make a small decision
+tree depending on what he knows it will be quick and
+efficient for a small subject. The computer can do a lot
+better by having a lot more data.</p>
+    <p>The decision tree is a supervised algorithm because
+they need labels, but the target variable can be real
+(regression problem) or categorical (classification
+problem). Respectively we call regression trees and
+classification trees.</p>
+    <p>As a reminder, a tree is an undirected, acyclic graph.
+For our algorithm we still start from the root to go to a leaf
+but if we draw the tree nothing prevents us from starting
+from a leaf to find how we arrived at the conclusion (See the example below).</p>
+
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/DecisionTreeEdureka.copng.png" %}">
+    </div>
+
+    <p>
+      The principle of the decision tree is to decide at each
+level of the tree until you find the leaf that corresponds
+to our data. for each case we have a data set. For the root
+and the intermediate nodes, it is necessary to answer a
+question (generally binary) with one of the data.
+Depending on the answer, we go to one of the
+intermediate nodes of the next level and we start
+interrogating again the data with a new question. The procedure is repeated until we reach a
+leaf that will allow us to obtain the result. Please take a look at our breast tumor decision tree below (one of possible results).
+    </p>
+
+    <div class="centercol">
+      <img class="img-fluid" src="{% static "img/tree.png" %}">
+    </div>
+
+    <p>
+      Decision trees are very easy to implement and represent, they
+do not need a lot of parameters, and they require little data preprocessing.
+    </p>
+    <p>One of the big advantages is that graphical visualization is possible and allows you to better
+understand certain errors (see the graph above). However, the problem is that a slight bias in the data can easily
+corrupt the response. We must also pay attention to the depth of the tree, as for the K of KNN, because the algorithm
+can quickly become underfitted (too small depth) or overfitted (too huge depth).</p>
+
+    <p><b>Now we can talk about the random forest. It is simply several decision trees then at the end we average the results of all the trees. Yes it is that easy.</b></p>
+
   </div>
   <div class="card-footer">
     References :
     <ul>
-      <li>https://www.edureka.co/</li>
-      <li>https://scikit-learn.org</li>
+      <li><a href="https://www.edureka.co" target="_blank">https://www.edureka.co</a></li>
+      <li><a href="https://scikit-learn.org" target="_blank">https://scikit-learn.org</a></li>
     </ul>
   </div>
 </div>
@@ -244,7 +290,7 @@ to classify emails as SPAM or NON-SPAM it is effective.
             <th scope="col" class="centercol">Decision Tree</th>
             <th scope="col" class="centercol">Random Forest</th>
           </tr>
-      
+      <a href="https://scikit-learn.org" target="_blank">
           <tr>
       <th scope="row">Stability of the result</th>
             <td class="centercol"><i class="fas fa-check"></i></td>
