@@ -26,13 +26,14 @@ urlpatterns = [
 	path('', views.home, name='home'),
 	path('detector', views.home, name='detector'),
 	path('us', views.us, name='us'),
- 	path('algoSVM', views.algoSVM, name='algoSVM'),
-   	path('algoKNN', views.algoKNN, name='algoKNN'),
-   	path('algoRandomForest', views.algoRandomForest, name='algoRandomForest'),
+ 	path('algos#svm', views.algos, name='algoSVM'),
+   	path('algos#knn', views.algos, name='algoKNN'),
+   	path('algos#rf', views.algos, name='algoRandomForest'),
+    path('algos#comp', views.algos, name='comp'),
 	path('breastCancer', views.breastCancer, name='breastCancer'),
 
 	re_path(r'svm/(?P<kind>\d{1})$', algosViews.svm, name='svm'),
-	re_path(r'randomForest$', algosViews.rf, name='rf'),
+	re_path(r'algo$', algosViews.rf, name='rf'),
 	re_path(r'decisionTree$', algosViews.dt, name='dt'),
 	re_path(r'knn$', algosViews.knn, name='knn'),
 

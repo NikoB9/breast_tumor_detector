@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'detector'%}">
+  	<img src="{% static "img/logo.png" %}" width="90" height="50" class="d-inline-block align-top" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'breastCancer'%}">Breast cancer </a>
+      </li>
+	  <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Classification algorithms
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'algoSVM'%}">SVM<span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="{% url 'algoKNN'%}">KNN</a>
+          <a class="dropdown-item" href="{% url 'algoRandomForest'%}">Random Forest</a>
+          <a class="dropdown-item" href="{% url 'comp'%}">Comparison</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'us'%}">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'detector'%}">Detector</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style type="text/css">
+  .col{
+    text-align: center;
+  }
+  .profile_img{
+    border-radius: 100px;
+    border: 4px solid white;
+  }
+  .pinkcheck{
+    color : rgba(223, 121, 167, 0.5) !important;
+  }
+  .centercol{
+    text-align: center;
+  }
+  p{
+    text-align: justify;
+  }
+</style>
+
+<div class="card" style="margin: 20px" id="svm">
+  <div class="card-header col">
+    <h3>Support Vector Machine Algorithm (SVM)</h3>
+  </div>
+  <div class="card-body">
+    <p>Blabla SVM</p>
+  </div>
+</div>
+
+<div class="card" style="margin: 20px" id="knn">
+  <div class="card-header col">
+    <h3>K-Nearst Neighbors Algorithm (KNN)</h3>
+  </div>
+  <div class="card-body">
+    <p>Blabla KNN</p>
+  </div>
+</div>
+
+<div class="card" style="margin: 20px" id="rf">
+  <div class="card-header col">
+    <h3>Random Forest Algorithm</h3>
+  </div>
+  <div class="card-body">
+    <p>Blabla Decision tree Random Forest</p>
+  </div>
+</div>
+
+<div class="card" style="margin: 20px" id="comp">
+  <div class="card-header col">
+    <h3>Comparison</h3>
+  </div>
+  <div class="card-body">
+    <table class="table">
+    {% csrf_token %}
+          
+          <tr>
+      <td>&nbsp;</td>
+            <th scope="col" class="centercol">SVM<br>Polynomial Degree : 2<br>Sigma : 1/ ( n features * X.val() ) </th>
+            <th scope="col" class="centercol">SVM<br>Linear</th>
+            <th scope="col" class="centercol">SVM<br>Polynomial Degree : 2<br>Sigma : 1/ n features </th>
+            <th scope="col" class="centercol">SVM<br>Radial Basis</th>
+            <th scope="col" class="centercol">KNN</th>
+            <th scope="col" class="centercol">Decision Tree</th>
+            <th scope="col" class="centercol">Random Forest</th>
+          </tr>
+      
+          <tr>
+      <th scope="row">Stability of the result</th>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+          </tr>
+        
+          <tr>
+      <th scope="row">Speed</th>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+          </tr>
+
+          <tr>
+      <th scope="row">Best Accuracy</th>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+          </tr>
+
+          <tr>
+      <th scope="row">Zero False Negative</th>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-check"></i></td>
+          </tr>
+
+      <tr>
+      <th scope="row">Details of result</th>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+            <td class="centercol pinkcheck"><i class="fas fa-check"></i></td>
+            <td class="centercol"><i class="fas fa-times"></i></td>
+          </tr>
+      
+    </table>
+  </div>
+</div>
+
+
+
+{% endblock %}

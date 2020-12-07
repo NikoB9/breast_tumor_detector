@@ -16,14 +16,8 @@ def home(request):
 def us(request):
 	return render(request, "us.html")
 
-def algoSVM(request):
-	return render(request, "algoSVM.html")
-
-def algoKNN(request):
-	return render(request, "algoKNN.html")
-
-def algoRandomForest(request):
-	return render(request, "algoRandomForest.html")
+def algos(request):
+	return render(request, "algos_explanation.html")
 
 def breastCancer(request):
 	return render(request, "breastCancer.html")
